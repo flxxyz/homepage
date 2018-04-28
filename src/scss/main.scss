@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+@import url('https://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+
+html:before, html:after, body:before, body:after {
+  content: "";
+  background: #9e1d16;
+  position: fixed;
+  display: block;
+  z-index: 5;
+}
+
+html:before {
+  height: 10px;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+html:after {
+  width: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+body:before {
+  height: 10px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body:after {
+  width: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #d7000f;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Black Ops One', 'Noto Sans Kannada', sans-serif;
+  margin: 0;
+  font-size: 125%;
+  overflow-x: hidden;
+  color: #fff;
+
+  .nav {
+    /*font-size: 80%;*/
+    height: 2em;
+    line-height: 2em;
+    text-align: left;
+    background: #fff;
+    color: #504e4a;
+    display: none;
+  }
+
+  .nav > #site-info {
+    position: fixed;
+    left: 50%;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  .nav > #site-info > span {
+    display: inline-block;
+    position: relative;
+    word-wrap: break-word;
+    word-break: normal;
+    width: 100%;
+    text-align: right;
+    right: .4em;
+  }
+}
+
+.modern {
+  /*font-size: 2em;*/
+
+  .row {
+    width: 100%;
+    position: relative;
+  }
+
+  .row > div {
+    float: left;
+    border: #d7000f solid 1px;
+    //background: rgba(255, 210, 204, .3);
+    position: relative;
+    /*transition: all .6s;*/
+    font-size: 1.8em;
+    cursor: pointer;
+  }
+
+  .row > div > div > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .row > div:hover a {
+    color: #fff;
+  }
+
+  .row > div:hover {
+    background: transparent;
+    color: #ffc864;
+    transition: all .6s;
+  }
+
+  .row > div:hover > div {
+    background: #d7000f;
+    color: #fff;
+    //background: rgba(0, 213, 255, 0.6);
+    transform: scale(1);
+    transition: all .6s;
+  }
+
+  .row > div > div {
+    position: absolute;
+    margin-left: 50%;
+    //color: #d7000f;
+    transition: all .6s;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    /* -webkit-writing-mode: vertical-rl; */
+  }
+
+  .row > .top > div {
+    top: 0;
+  }
+
+  .row > .bottom > div {
+    bottom: 0;
+  }
+}
+
+#like {
+  .like-vote {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 0 4px;
+  }
+
+  .like-vote:hover {
+    background: #e51c23;
+  }
+
+  .like-vote:hover .like-count,
+  .like-vote:hover .like-title,
+  .like-vote:hover .like-message {
+    color: #fff;
+  }
+
+  .like-title {
+    color: #e51c23;
+    margin-bottom: 20px;
+    padding: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .like-count {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    color: #e51c23;
+    /*font-size: 40px;*/
+    cursor: pointer;
+  }
+}
+
+#i {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+  border: 0;
+  left: 0;
+  top: 0;
+  padding: 60px 0 0;
+  transform: scale(1.3);
+}
+
+#v {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  vertical-align: top;
+  border: 0;
+}
