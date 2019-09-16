@@ -13,9 +13,15 @@ export default {
     };
   },
   props: {
-    url: String,
+    url: {
+      required: true,
+      type: String
+    },
     mimeType: String,
-    direction: String
+    direction: {
+      required: true,
+      type: String
+    }
   },
   mounted() {
     this.$refs.background.onloadstart = () => {

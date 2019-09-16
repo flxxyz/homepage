@@ -4,6 +4,7 @@
       v-for="(item, index) in blocks"
       :key="index"
       :link="item.link"
+      :nofollow="item.nofollow"
       :href="item.href"
       :text="item.text"
       :direction="blockDirection"
@@ -33,11 +34,13 @@ export default {
         },
         {
           link: true,
+          nofollow: true,
           href: "http://google.com",
           text: "👻GOOGLE"
         },
         {
           link: true,
+          nofollow: true,
           href: "http://baidu.com",
           text: "🤮BAIDU"
         },

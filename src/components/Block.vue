@@ -1,6 +1,6 @@
 <template>
   <div :class="direction">
-    <a v-if="link" class="link" :href="href" target="_blank">{{text}}</a>
+    <a v-if="link" class="link" ref="link" :href="href" target="_blank">{{text}}</a>
     <div v-else class="nb">{{text}}</div>
   </div>
 </template>
@@ -12,10 +12,31 @@ export default {
     return {};
   },
   props: {
-    link: Boolean,
-    href: String,
-    text: String,
-    direction: String
+    link: {
+      type: Boolean,
+      default: false
+    },
+    href: {
+      type: String,
+      default: ""
+    },
+    text: {
+      required: true,
+      type: String,
+    },
+    nofollow: {
+      type: Boolean,
+      default: false
+    },
+    direction: {
+      required: true,
+      type: String,
+    }
+  },
+  mounted() {
+    if (this.nofollow) {
+      this.$refs.link.setAttribute("rel", "external nofollow");
+    }
   }
 };
 </script>
