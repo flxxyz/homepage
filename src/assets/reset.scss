@@ -1,0 +1,29 @@
+::selection {
+  width: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  div {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: $字体色;
+    text-decoration: none;
+  }
+}
+html::before,
+html::after,
+body::before,
+body::after {
+  content: "";
+  // position: fixed;
+  // display: block;
+}
