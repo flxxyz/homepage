@@ -1,20 +1,24 @@
 <template>
   <div :class="direction">
-    <a v-if="link" class="link" ref="link" :href="href" target="_blank">{{text}}</a>
+    <a v-if="t === 'link'" class="link" ref="link" :href="href" target="_blank">{{text}}</a>
+    <Like v-else-if="t === 'like'" :text="text" />
     <div v-else class="nb">{{text}}</div>
   </div>
 </template>
 
 <script>
+import Like from "./Like";
+
 export default {
   name: "block",
   data() {
     return {};
   },
   props: {
-    link: {
-      type: Boolean,
-      default: false
+    t: {
+      required: true,
+      type: String,
+      default: ""
     },
     href: {
       type: String,
@@ -22,7 +26,7 @@ export default {
     },
     text: {
       required: true,
-      type: String,
+      type: String
     },
     nofollow: {
       type: Boolean,
@@ -30,13 +34,16 @@ export default {
     },
     direction: {
       required: true,
-      type: String,
+      type: String
     }
   },
   mounted() {
     if (this.nofollow) {
       this.$refs.link.setAttribute("rel", "external nofollow");
     }
+  },
+  components: {
+    Like
   }
 };
 </script>
@@ -51,6 +58,8 @@ export default {
   .link,
   .nb {
     margin-top: 50%;
+    position: relative;
+    top: -0.6em;
   }
 }
 .vertical {

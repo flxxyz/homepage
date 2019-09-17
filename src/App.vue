@@ -3,7 +3,7 @@
     <Block
       v-for="(item, index) in blocks"
       :key="index"
-      :link="item.link"
+      :t="item.type"
       :nofollow="item.nofollow"
       :href="item.href"
       :text="item.text"
@@ -23,41 +23,41 @@ export default {
     return {
       blocks: [
         {
-          link: false,
+          type: "",
           href: "https://flxxyz.com",
           text: "🌈 彩虹海是我哒"
         },
         {
-          link: true,
+          type: "link",
           href: "https://blog.flxxyz.com",
           text: "🏠 BLOG"
         },
         {
-          link: true,
+          type: "link",
           nofollow: true,
           href: "http://google.com",
           text: "👻 GOOGLE"
         },
         {
-          link: true,
+          type: "link",
           nofollow: true,
           href: "http://baidu.com",
           text: "🤮 BAIDU"
         },
         {
-          link: false,
+          type: "like",
+          text: "Do You Like Me?"
+        },
+        {
+          type: "",
           text: "未完待续"
         },
         {
-          link: false,
+          type: "",
           text: "未完待续"
         },
         {
-          link: false,
-          text: "未完待续"
-        },
-        {
-          link: false,
+          type: "",
           text: "未完待续"
         }
       ],
@@ -79,7 +79,9 @@ export default {
     resize() {
       console.log("屏幕变动");
       this.direction =
-        (window.innerWidth / 16) > (window.innerHeight / 9) ? "horizontal" : "vertical";
+        window.innerWidth / 16 > window.innerHeight / 9
+          ? "horizontal"
+          : "vertical";
     }
   },
   computed: {
