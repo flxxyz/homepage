@@ -35,7 +35,7 @@ export default {
     };
 
     this.$refs.background.preload = "auto";
-    this.$refs.background.volume = 0.7;
+    this.$refs.background.volume = 0.6;
     this.$refs.background.loop = true;
     this.$refs.background.autoplay = true;
     this.$refs.background.load();
