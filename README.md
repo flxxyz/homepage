@@ -1,4 +1,5 @@
 # homepage
+基于vue-cli构建
 
 ## Project setup
 ```
