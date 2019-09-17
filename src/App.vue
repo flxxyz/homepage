@@ -25,24 +25,24 @@ export default {
         {
           link: false,
           href: "https://flxxyz.com",
-          text: "🌈彩虹海是我哒"
+          text: "🌈 彩虹海是我哒"
         },
         {
           link: true,
           href: "https://blog.flxxyz.com",
-          text: "🏠BLOG"
+          text: "🏠 BLOG"
         },
         {
           link: true,
           nofollow: true,
           href: "http://google.com",
-          text: "👻GOOGLE"
+          text: "👻 GOOGLE"
         },
         {
           link: true,
           nofollow: true,
           href: "http://baidu.com",
-          text: "🤮BAIDU"
+          text: "🤮 BAIDU"
         },
         {
           link: false,
@@ -68,16 +68,12 @@ export default {
   created() {
     this.resize();
     window.addEventListener("resize", this.resize, false);
-    // console.log(
-    //   "%c",
-    //   "padding:50px;line-height:93px;background:url('https://static.flxxyz.com/img/2333.gif') no-repeat;"
-    // );
     console.log(
       "%cflxxyz.com",
       "text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:2em"
     );
-    console.log("%c图片来源:", "color:red", "Megalo Box");
-    console.log("%c声音来源:", "color:red", "https://youtu.be/7ryzRsoJ8gY");
+    console.log("%c图片来源:", "color:red", "DAOKO - Forever Friends");
+    console.log("%c视频来源:", "color:red", "https://youtu.be/SKZWU-mj8No");
   },
   methods: {
     resize() {
