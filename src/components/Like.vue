@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import http from "../http";
+
 export default {
   name: "Like",
   props: {
@@ -98,8 +100,20 @@ export default {
     general(t, c) {
       return c * (t / this.duration);
     },
-    getLike() {
-      console.log((this.result = 99999));
+    async getLike() {
+      let result = await http.getLike(
+        "flxxyz",
+        "81dc9bdb52d04dc20036dbd8313ed055"
+      );
+
+      try {
+        result = JSON.parse(result);
+        if (result.hasOwnProperty("count")) {
+          this.result = result.count;
+        }
+      } catch (err) {
+        console.error(err);
+      }
     },
     addLike() {
       //控制点击间隔的文字
@@ -111,6 +125,8 @@ export default {
       } else {
         this.content = "∑( 口 ||要坏掉了";
       }
+
+      http.addLike("flxxyz", "81dc9bdb52d04dc20036dbd8313ed055");
       this.counter += 1;
     }
   },
