@@ -43,7 +43,7 @@ export default {
   mounted() {
     setTimeout(() => {
       // console.log(window.like = this.$refs.like)
-      this.$refs.like.addEventListener('click', this.addLike, false)
+      this.$refs.like.addEventListener("click", this.addLike, false);
     }, this.duration);
     this.getLike();
     this.requestId = requestAnimationFrame(this.up);
@@ -131,8 +131,12 @@ export default {
 .like {
   width: 100%;
   height: 100%;
+  font-weight: bold;
+
   &:hover {
     background-color: $LIKE主题色;
+    transition: all 0.6s;
+
     p,
     div {
       color: $字体色;
@@ -153,6 +157,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     div {
       position: absolute;
       left: 50%;
