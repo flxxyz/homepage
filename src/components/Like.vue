@@ -1,7 +1,9 @@
 <template>
-  <div class="like" v-on:click="addLike">
-    <p>{{text}}</p>
-    <div>{{counter}}</div>
+  <div :class="style" ref="like">
+    <div class="like-vote">
+      <p>{{content}}</p>
+      <div>♥{{counter}}</div>
+    </div>
   </div>
 </template>
 
@@ -12,6 +14,10 @@ export default {
     text: {
       type: String,
       default: ""
+    },
+    direction: {
+      required: true,
+      type: String
     }
   },
   watch: {
@@ -29,11 +35,17 @@ export default {
       startTime: 0, //帧开始时间
       useEasing: true, //是否使用缓冲动画
       frame: 0, //当前帧的值
-      requestId: null //当前帧数
+      requestId: null, //当前帧数
+      content: this.text, //text展示副本
+      lastClickTime: 0 //加心最后点击时间
     };
   },
   mounted() {
-    this.getLike()
+    setTimeout(() => {
+      // console.log(window.like = this.$refs.like)
+      this.$refs.like.addEventListener('click', this.addLike, false)
+    }, this.duration);
+    this.getLike();
     this.requestId = requestAnimationFrame(this.up);
   },
   methods: {
@@ -45,6 +57,7 @@ export default {
       let progress = timestamp - this.startTime;
 
       if (this.startValue > this.result) {
+        //从小到大
         if (this.useEasing) {
           this.frame =
             this.startValue -
@@ -54,8 +67,11 @@ export default {
             this.startValue -
             this.general(progress, this.startValue - this.result);
         }
+
+        //保证当前帧的值不超过结果
         this.frame = this.frame < this.result ? this.result : this.frame;
       } else {
+        //从大到小
         if (this.useEasing) {
           this.frame = this.easing(progress, 0, this.result - this.startValue);
         } else {
@@ -83,24 +99,64 @@ export default {
       return c * (t / this.duration);
     },
     getLike() {
-        console.log(this.result = 99999)
+      console.log((this.result = 99999));
     },
     addLike() {
-      console.log((this.result += 1));
+      //控制点击间隔的文字
+      let currClickTime = new Date().getTime();
+      let flag = currClickTime - this.lastClickTime > 300;
+      this.lastClickTime = new Date().getTime();
+      if (flag) {
+        this.content = "爱你哟(´▽`ʃ♡ƪ)";
+      } else {
+        this.content = "∑( 口 ||要坏掉了";
+      }
+      this.counter += 1;
     }
   },
   computed: {
     duration() {
       return Number(this.time) * 1000;
+    },
+    style() {
+      return "like";
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/color.scss";
+
 .like {
-  text-align: center;
   width: 100%;
   height: 100%;
+  &:hover {
+    background-color: $LIKE主题色;
+    p,
+    div {
+      color: $字体色;
+    }
+  }
+
+  .like-vote {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    color: $LIKE主题色;
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    div {
+      position: absolute;
+      left: 50%;
+    }
+  }
 }
 </style>

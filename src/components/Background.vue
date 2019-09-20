@@ -1,5 +1,5 @@
 <template>
-  <video :class="direction" ref="background">
+  <video :class="style" ref="background">
     <source :src="url" :type="mimeType" />
   </video>
 </template>
@@ -35,7 +35,7 @@ export default {
     };
 
     this.$refs.background.preload = "auto";
-    this.$refs.background.volume = 0.6;
+    this.$refs.background.volume = 0.5;
     this.$refs.background.loop = true;
     this.$refs.background.autoplay = true;
     this.$refs.background.load();
@@ -52,7 +52,12 @@ export default {
   },
   destroyed() {
     clearInterval(this.timer);
-  }
+  },
+  computed: {
+    style() {
+      return `background ${this.direction}`;
+    }
+  },
 };
 </script>
 
@@ -67,6 +72,6 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
 }
 </style>

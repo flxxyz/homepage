@@ -7,9 +7,9 @@
       :nofollow="item.nofollow"
       :href="item.href"
       :text="item.text"
-      :direction="blockDirection"
+      :direction="direction"
     />
-    <Background :url="url" :mimeType="mimeType" :direction="backgroundDirection" />
+    <Background :url="url" :mimeType="mimeType" :direction="direction" />
   </div>
 </template>
 
@@ -30,39 +30,37 @@ export default {
         {
           type: "link",
           href: "https://blog.flxxyz.com",
-          text: "🏠 BLOG"
+          text: "🏠 Blog"
         },
         {
           type: "link",
-          nofollow: true,
-          href: "http://google.com",
-          text: "👻 GOOGLE"
+          href: "http://websocket-online-test.flxxyz.com/",
+          text: "👻 Websocket"
         },
         {
           type: "link",
-          nofollow: true,
-          href: "http://baidu.com",
-          text: "🤮 BAIDU"
+          href: "https://api.flxxyz.com",
+          text: "👀 API"
+        },
+        {
+          type: "",
+          text: "未完待续"
+        },
+        {
+          type: "",
+          text: "未完待续"
+        },
+        {
+          type: "",
+          text: "未完待续"
         },
         {
           type: "like",
           text: "Do You Like Me?"
         },
-        {
-          type: "",
-          text: "未完待续"
-        },
-        {
-          type: "",
-          text: "未完待续"
-        },
-        {
-          type: "",
-          text: "未完待续"
-        }
       ],
       direction: "vertical",
-      url: "/Forever-Friends.webm"
+      url: "https://static.flxxyz.com/video/Forever-Friends.webm"
     };
   },
   created() {
@@ -77,20 +75,14 @@ export default {
   },
   methods: {
     resize() {
-      console.log("屏幕变动");
+      //保持16：9
       this.direction =
-        window.innerWidth / 16 > window.innerHeight / 9
+        window.innerWidth / window.innerHeight > 16 / 9
           ? "horizontal"
           : "vertical";
     }
   },
   computed: {
-    blockDirection() {
-      return `block ${this.direction}`;
-    },
-    backgroundDirection() {
-      return `background ${this.direction}`;
-    },
     mimeType() {
       let mimeType = this.url.slice(
         this.url.lastIndexOf(".") + 1,
