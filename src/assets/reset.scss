@@ -1,0 +1,45 @@
+@import "./color.scss";
+
+::selection {
+  width: 0;
+}
+
+:focus {
+  outline: 0;
+}
+
+* {
+  user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $背景色;
+
+  div,
+  p {
+    margin: 0;
+    padding: 0;
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  a {
+    color: $字体色;
+    text-decoration: none;
+    &::selection {
+      background: transparent;
+    }
+  }
+}
+html::before,
+html::after,
+body::before,
+body::after {
+  content: "";
+}

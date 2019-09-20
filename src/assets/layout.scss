@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+@import "./color.scss";
+@import "./reset.scss";
+
+#app {
+  font-family: "Quicksand", "Microsoft YaHei light", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
