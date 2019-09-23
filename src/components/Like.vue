@@ -31,11 +31,11 @@ export default {
   data() {
     return {
       time: 5, //持续的秒数
+      updateTime: 10, //getLike更新持续的秒数
       counter: 0, //操作的计数器
       result: 0, //计数器的结果
       startValue: 0, //计数器的初始值
       startTime: 0, //帧开始时间
-      useEasing: true, //是否使用缓冲动画
       frame: 0, //当前帧的值
       requestId: null, //当前帧数
       content: this.text, //text展示副本
@@ -44,8 +44,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      // console.log(window.like = this.$refs.like)
-      this.$refs.like.addEventListener("click", this.addLike, false);
+      this.$refs.like.addEventListener("click", this.addLike, false); //数字滚动前无法点击
     }, this.duration);
     this.getLike();
     this.requestId = requestAnimationFrame(this.up);
@@ -60,45 +59,39 @@ export default {
 
       if (this.startValue > this.result) {
         //从小到大
-        if (this.useEasing) {
-          this.frame =
-            this.startValue -
-            this.easing(progress, 0, this.startValue - this.result);
-        } else {
-          this.frame =
-            this.startValue -
-            this.general(progress, this.startValue - this.result);
-        }
+        this.frame =
+          this.startValue -
+          this.easing(progress, 0, this.startValue - this.result);
 
         //保证当前帧的值不超过结果
         this.frame = this.frame < this.result ? this.result : this.frame;
       } else {
-        //从大到小
-        if (this.useEasing) {
-          this.frame = this.easing(progress, 0, this.result - this.startValue);
-        } else {
-          this.frame =
-            this.startValue +
-            this.general(progress, this.result - this.startValue);
-        }
+        this.frame = this.easing(progress, 0, this.result - this.startValue);
         this.frame = this.frame > this.result ? this.result : this.frame;
       }
 
-      this.counter = Math.round(this.frame);
+      this.frame = Math.round(this.frame);
+      this.counter = this.startValue + this.frame;
 
       if (progress < this.duration) {
         this.requestId = requestAnimationFrame(this.up);
       }
+    },
+    //更新帧
+    update(newVal) {
+      newVal = Number(newVal);
+      if (newVal === this.frame) return;
+      cancelAnimationFrame(this.requestId);
+      this.startTime = 0;
+      this.startValue = this.counter;
+      this.result = newVal;
+      this.requestId = requestAnimationFrame(this.up);
     },
     //缓冲动画
     easing(t, b, c) {
       return (
         (c * (-Math.pow(2, (-10 * t) / this.duration) + 1) * 1024) / 1023 + b
       );
-    },
-    //一般动画
-    general(t, c) {
-      return c * (t / this.duration);
     },
     async getLike() {
       let result = await http.getLike(
@@ -109,11 +102,14 @@ export default {
       try {
         result = JSON.parse(result);
         if (result.hasOwnProperty("count")) {
-          this.result = result.count;
+          this.update(result.count);
         }
       } catch (err) {
         console.error(err);
       }
+
+      //定时触发更新
+      setTimeout(this.getLike, this.updateDuration);
     },
     addLike() {
       //控制点击间隔的文字
@@ -127,12 +123,15 @@ export default {
       }
 
       http.addLike("flxxyz", "81dc9bdb52d04dc20036dbd8313ed055");
-      this.counter += 1;
+      this.update(this.counter + 1);
     }
   },
   computed: {
     duration() {
       return Number(this.time) * 1000;
+    },
+    updateDuration() {
+      return Number(this.updateTime) * 1000;
     },
     style() {
       return "like";
