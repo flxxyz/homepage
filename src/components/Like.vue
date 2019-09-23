@@ -123,7 +123,7 @@ export default {
       }
 
       http.addLike("flxxyz", "81dc9bdb52d04dc20036dbd8313ed055");
-      this.update(this.counter + 1);
+      this.update(this.counter += 1);
     }
   },
   computed: {
