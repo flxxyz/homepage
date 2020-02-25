@@ -94,10 +94,7 @@ export default {
       );
     },
     async getLike() {
-      let result = await http.getLike(
-        "flxxyz",
-        "81dc9bdb52d04dc20036dbd8313ed055"
-      );
+      let result = await http.getLike("5e54eeacff028300082a8d02");
 
       try {
         result = JSON.parse(result);
@@ -122,7 +119,7 @@ export default {
         this.content = "∑( 口 ||要坏掉了";
       }
 
-      http.addLike("flxxyz", "81dc9bdb52d04dc20036dbd8313ed055");
+      http.addLike("5e54eeacff028300082a8d02");
       this.update(this.counter += 1);
     }
   },

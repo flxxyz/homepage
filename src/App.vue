@@ -34,7 +34,7 @@ export default {
         },
         {
           type: "link",
-          href: "http://websocket-online-test.flxxyz.com/",
+          href: "https://websocket.buger.dev/",
           text: "👻 Websocket"
         },
         {

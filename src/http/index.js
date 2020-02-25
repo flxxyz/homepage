@@ -1,9 +1,8 @@
 import Ajax from './ajax'
 
 export default {
-    getLike(user, key) {
+    getLike(key) {
         let query = Ajax.encode('text', {
-            user: user,
             key: key
         })
 
@@ -12,12 +11,11 @@ export default {
             method: 'get',
         })
     },
-    addLike(user, key) {
+    addLike(key) {
         return Ajax.new({
             url: 'https://like.toyou.ren/add',
             method: 'post',
             body: {
-                user: user,
                 key: key
             }
         })
