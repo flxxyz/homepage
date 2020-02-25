@@ -7,13 +7,13 @@ export default {
         })
 
         return Ajax.new({
-            url: `https://like.toyou.ren/get?${query}`,
+            url: `https://ywsupyylinnq.cn-e1.leanapp.cn/get?${query}`,
             method: 'get',
         })
     },
     addLike(key) {
         return Ajax.new({
-            url: 'https://like.toyou.ren/add',
+            url: 'https://ywsupyylinnq.cn-e1.leanapp.cn/add',
             method: 'post',
             body: {
                 key: key
