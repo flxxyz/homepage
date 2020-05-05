@@ -24,7 +24,7 @@ jobs:
           git config --local user.name "${{ github.actor }}"
           git config --local user.email "${{ github.actor }}@users.noreply.github.com"
           git checkout -b gh-pages
-          mv ../dist/* .
+          mv ../docs/* .
           git add --all .
           git commit -m "CI: build"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
