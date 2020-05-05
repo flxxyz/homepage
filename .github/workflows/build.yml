@@ -1,0 +1,45 @@
+name: Deploy gh-pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js for use with actions
+        uses: actions/setup-node@v1.1.0
+      - name: RUN npm build
+        run: |
+          npm install
+          npm run build
+      - name: Release Github Pages
+        run: |
+          mkdir .deploy && cd .deploy
+          git init
+          git config --local user.name "${{ github.actor }}"
+          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout -b gh-pages
+          mv ../dist/* .
+          git add --all .
+          git commit -m "CI: build"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f -u origin gh-pages
+      - name: Set environment variables
+        run: |
+          echo "::set-env name=TAG_NAME::$(date +%Y%m%d)"
+          echo "::set-env name=RELEASE_NAME::$(date +%Y%m%d)"
+        shell: bash
+      - name: Create a release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: ${{ env.RELEASE_NAME }}
+          draft: false
+          prerelease: false
