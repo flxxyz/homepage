@@ -39,8 +39,8 @@ export default {
         },
         {
           type: "link",
-          href: "https://api.flxxyz.com",
-          text: "👀 API"
+          href: "http://status.flxxyz.com/",
+          text: "👀 Status"
         },
         {
           type: "",
