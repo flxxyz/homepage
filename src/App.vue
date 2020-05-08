@@ -39,7 +39,7 @@ export default {
         },
         {
           type: "link",
-          href: "http://status.flxxyz.com/",
+          href: "https://status.flxxyz.com/",
           text: "👀 Status"
         },
         {
