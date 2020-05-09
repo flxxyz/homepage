@@ -43,8 +43,9 @@ export default {
           text: "👀 Status"
         },
         {
-          type: "",
-          text: "未完待续"
+          type: "link",
+          link: "https://mirror.flxxyz.com/",
+          text: "💿 Mirror"
         },
         {
           type: "",
