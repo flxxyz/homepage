@@ -31,8 +31,8 @@ jobs:
           git push -f -u origin gh-pages
       - name: Set environment variables
         run: |
-          echo "::set-env name=TAG_NAME::$(date +%Y%m%d)"
-          echo "::set-env name=RELEASE_NAME::$(date +%Y%m%d)"
+          echo "::set-env name=TAG_NAME::$(date +%Y%m%d%H%M%S)"
+          echo "::set-env name=RELEASE_NAME::$(date +%Y%m%d%H%M%S)"
         shell: bash
       - name: Create a release
         uses: actions/create-release@v1
