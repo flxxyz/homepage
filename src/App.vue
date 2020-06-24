@@ -34,7 +34,7 @@ export default {
         },
         {
           type: "link",
-          href: "http://websocket.flxxyz.com/",
+          href: "http://wot.flxxyz.com/",
           text: "👻 Websocket"
         },
         {
